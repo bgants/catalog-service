@@ -3,10 +3,12 @@ package com.polarbookshop.catalogservice.domain;
 import jakarta.validation.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.context.ActiveProfiles;
+
 import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+@ActiveProfiles("integration")
 public class BookValidationTests {
     private static Validator validator;
 
