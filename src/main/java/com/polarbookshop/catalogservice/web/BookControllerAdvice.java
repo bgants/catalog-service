@@ -2,7 +2,6 @@ package com.polarbookshop.catalogservice.web;
 
 import com.polarbookshop.catalogservice.domain.BookAlreadyExistsException;
 import com.polarbookshop.catalogservice.domain.BookNotFoundException;
-import org.hibernate.validator.internal.metadata.location.FieldConstraintLocation;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;

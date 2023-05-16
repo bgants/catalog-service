@@ -24,15 +24,17 @@ ext {
 }
 
 dependencies {
-	annotationProcessor	'org.springframework.boot:spring-boot-configuration-processor'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	implementation 'org.springframework.retry:spring-retry'
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.flywaydb:flyway-core'
+
 	runtimeOnly 'org.postgresql:postgresql'
+	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webflux'
 	testImplementation 'org.testcontainers:postgresql'
@@ -51,5 +53,18 @@ tasks.named('test') {
 
 bootRun {
 	systemProperty 'spring.profiles.active', 'testdata'
+}
+
+bootBuildImage {
+	imageName = "${project.name}"
+	environment = ["BP_JVM_VERSION": "17.*"]
+
+	docker {
+		publishRegistry {
+			username = project.findProperty("registryUsername")
+			password = project.findProperty("registryToken")
+			url = project.findProperty("registryUrl")
+		}
+	}
 }
 
