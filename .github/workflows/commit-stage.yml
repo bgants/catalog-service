@@ -31,9 +31,9 @@ jobs:
           java-version: 17 
           cache: gradle
       - name: Build container image
-          run: |
-            chmod +x gradlew
-            ./gradlew bootBuildImage --imageName ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+        run: |
+          chmod +x gradlew
+          ./gradlew bootBuildImage --imageName ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
       - name: Code vulnerability scanning 
         uses: anchore/scan-action@v3
         id: scan
