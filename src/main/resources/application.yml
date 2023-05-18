@@ -1,5 +1,6 @@
 server:
   port: 9001
+  shutdown: graceful
   tomcat:
     connection-timeout: 2s
     keep-alive-timeout: 15s
@@ -9,11 +10,13 @@ server:
 spring:
   application:
     name: catalog-service
+    lifecycle:
+      timeout-per-shutdown-phase: 15s
   config:
-    import: "optional:configserver:"
+    import: "optional:configserver:http://localhost:8888"
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: http://catalog-service:8888
       request-connect-timeout: 5000
       request-read-timeout: 5000
       fail-fast: false
@@ -38,3 +41,14 @@ management:
 
 polar:
   greeting: Welcome to the local book catalog!
+
+
+server:
+  port: 9001
+  shutdown: graceful
+  tomcat:
+    connection-timeout: 2s
+    keep-alive-timeout: 15s
+    threads:
+      max: 50
+      min-spare: 5
