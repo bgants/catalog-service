@@ -43,6 +43,7 @@ public record Book(
         int version
 
 ) {
+        //creates a new book
         public static Book of(
                 String isbn, String title, String author, Double price, String publisher
         ) {
