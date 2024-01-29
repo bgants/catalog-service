@@ -19,7 +19,7 @@ configurations {
 }
 
 ext {
-	set('springCloudVersion', "2023.0.0")
+	set('springCloudVersion', "2022.0.3")
 	set('testcontainersVersion', "1.19.4")
 }
 
