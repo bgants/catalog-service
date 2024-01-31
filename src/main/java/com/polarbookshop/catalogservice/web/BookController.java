@@ -4,6 +4,9 @@ import com.polarbookshop.catalogservice.domain.Book;
 import com.polarbookshop.catalogservice.domain.BookService;
 
 import jakarta.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("books")
 public class BookController {
     private final BookService bookService;
+    private Logger logger = LoggerFactory.getLogger(BookController.class);
 
     public BookController(BookService bookService) {
         this.bookService = bookService;
@@ -24,6 +28,7 @@ public class BookController {
 
     @GetMapping("{isbn}")
     public Book getByIsbn(@PathVariable String isbn){
+        logger.info(("in getByIsbn catalog-service BookController"));
         return bookService.viewDetails(isbn);
     }
 

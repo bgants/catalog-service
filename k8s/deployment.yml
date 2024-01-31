@@ -16,9 +16,10 @@ spec:
     spec:
       containers:
         - name: catalog-service
-          image: localhost:5001/catalog-service:latest
+          image: localhost:32000/catalog-service:latest
           imagePullPolicy: IfNotPresent
           lifecycle:
+            #makes k8s wait 5 secs before sending SIGTERM signal to pod
             preStop:
               exec:
                 command: [ "sh", "-c", "sleep 5" ]
